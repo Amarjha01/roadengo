@@ -58,8 +58,8 @@ const DoorstepService = ({ onBack }) => {
 
     const options = {
       enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 60000,
+      timeout: 15000,
+      maximumAge: 0,
     };
 
     navigator.geolocation.getCurrentPosition(
@@ -69,7 +69,9 @@ const DoorstepService = ({ onBack }) => {
 
           const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1&zoom=18`;
           const response = await fetch(url, {
-            headers: { Accept: "application/json" },
+            headers: { Accept: "application/json" ,
+              "User-Agent": "RoadengoApp/1.0"
+            },
           });
 
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -97,7 +99,8 @@ ${accuracy ? `${Math.round(accuracy)}m` : "Unknown"}`;
 ${accuracy ? `${Math.round(accuracy)}m` : "Unknown"}
 Address lookup failed`;
 
-          setFormData((prev) => ({ ...prev, location: fallback }));
+          // setFormData((prev) => ({ ...prev, location: fallback }));
+          setFormData((prev) => ({ ...prev, address: fallback }));
           alert("⚠️ Got coordinates but couldn't fetch address");
         } finally {
           setIsFetchingLocation(false);

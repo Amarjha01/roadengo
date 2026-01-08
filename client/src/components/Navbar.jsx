@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { EllipsisVertical } from 'lucide-react';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDropDownOpen , setDropDownOpen] = useState(false)
 
    const dropdownRef = useRef(null);
 
@@ -125,23 +124,6 @@ const Navbar = () => {
           
           {/* Desktop Booking Button */}
           <div className="hidden lg:flex lg:justify-center lg:items-center">
-              <div ref={dropdownRef} className="relative flex justify-center items-center transition-all duration-700">
-               <EllipsisVertical onClick={()=>{setDropDownOpen(!isDropDownOpen)}} className=" text-white cursor-pointer"/>
-              {isDropDownOpen &&  
-              <div   className={`absolute top-10 py-5 flex flex-col justify-center items-center gap-5 w-40 rounded-md bg-red-700 text-white transition-all duration-1000 ease-in-out ${
-          isDropDownOpen
-            ? "opacity-100 transform scale-100 translate-y-0"
-            : "opacity-0 transform scale-95 translate-y-5 pointer-events-none"
-        }`}>
-                <Link className=" hover:scale-115 transition-all duration-500" to={'/admin/login'}>
-                  Admin Login
-                </Link>
-                <Link className=" hover:scale-115 transition-all duration-500" to={'mechanic/login'}>
-                  Mechanic Login
-                </Link>
-              </div>
-                }
-            </div>
             <Link 
               to="/booking" 
               className=" hidden md:block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors duration-300"
@@ -154,24 +136,32 @@ const Navbar = () => {
           <div className=" flex justify-center items-center">
                 
              <div className="lg:flex lg:justify-center lg:items-center">
-              <div ref={dropdownRef} className="relative flex justify-center items-center transition-all duration-700">
-               <EllipsisVertical onClick={()=>{setDropDownOpen(!isDropDownOpen)}} className=" text-white cursor-pointer"/>
-              {isDropDownOpen &&  
-              <div   className={`absolute top-10 py-5 flex flex-col justify-center items-center gap-5 w-40 rounded-md bg-red-700 text-white transition-all duration-1000 ease-in-out ${
-          isDropDownOpen
-            ? "opacity-100 transform scale-100 translate-y-0"
-            : "opacity-0 transform scale-95 translate-y-5 pointer-events-none"
-        }`}>
-                <Link className=" hover:scale-115 transition-all duration-500" to={'/admin/login'}>
+            <div className="relative flex justify-center items-center group">
+              
+              {/* Icon */}
+              <EllipsisVertical className="text-white cursor-pointer" />
+
+              {/* Dropdown */}
+              <div
+                className="absolute top-10 py-5 flex flex-col justify-center items-center gap-5 w-40 rounded-md bg-red-700 text-white opacity-0 scale-95 translate-y-2 invisible group-hover:visible group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
+                <Link
+                  className="hover:scale-110 transition-all duration-300"
+                  to="/admin/login"
+                >
                   Admin Login
                 </Link>
-                <Link className=" hover:scale-115 transition-all duration-500" to={'mechanic/login'}>
+
+                <Link
+                  className="hover:scale-110 transition-all duration-300"
+                  to="/mechanic/login"
+                >
                   Mechanic Login
                 </Link>
               </div>
-                }
+
             </div>
           </div>
+
                 {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}

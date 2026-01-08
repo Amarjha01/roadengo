@@ -86,7 +86,7 @@ const Booking = () => {
                     ? window.open(`tel:${service.phone}`, "_self")
                     : setSelectedService(service.type)
                 }
-                className="bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-blue-300 active:scale-[0.98] flex flex-col h-72 sm:h-80 lg:h-88"
+                className="bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-blue-300 active:scale-[0.98] flex flex-col h-full"
               >
                 {/* Fixed Top Section - Mobile Compact */}
                 <div className="text-center p-3 sm:p-4 lg:p-6 pb-2 sm:pb-3">
@@ -140,7 +140,7 @@ const Booking = () => {
                 </div>
 
                 {/* Fixed Bottom Section */}
-                <div className="p-3 sm:p-4 lg:p-6 pt-2 sm:pt-3 mt-auto">
+                <div className="p-3 sm:p-4 lg:p-6 mt-auto">
                   <button
                     className={`w-full ${
                       service.color === "blue"
